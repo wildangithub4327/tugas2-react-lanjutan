@@ -1,0 +1,50 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "price": 50000,
+      "stock": 50,
+      "cover_photo": "harry_potter.jpg",
+      "genre": "Fiksi",
+      "author_id": 1
+    },
+    {
+      "id": "2",
+      "title": "The Shining",
+      "price": 25000,
+      "stock": 30,
+      "cover_photo": "the_shining.jpg",
+      "genre": "Horror",
+      "author_id": 2
+    },
+    {
+      "id": "3",
+      "title": "Laskar Pelangi",
+      "price": 40000,
+      "stock": 75,
+      "cover_photo": "laskar_pelangi.jpg",
+      "genre": "Romance",
+      "author_id": 3
+    },
+    {
+      "id": "Zqr5n4Nlzao",
+      "title": "cuki",
+      "price": 15000,
+      "stock": 299,
+      "cover_photo": "default_cover.jpg",
+      "genre": "Horror",
+      "author_id": 2
+    }
+  ],
+  "genres": [
+    { "id": "1", "name": "Fiksi" },
+    { "id": "2", "name": "Horror" },
+    { "id": "3", "name": "Romance" }
+  ],
+  "authors": [
+    { "id": "1", "name": "J.K. Rowling", "photo": "jk.jpg" },
+    { "id": "2", "name": "Stephen King", "photo": "shining.jpg" },
+    { "id": "3", "name": "Andrea Hirata", "photo": "laskar.jpg" }
+  ]
+}
