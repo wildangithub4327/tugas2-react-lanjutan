@@ -5,7 +5,6 @@ import axios from "axios";
 export default function AdminBooks() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeDropdown, setActiveDropdown] = useState(null);
 
   useEffect(() => {
     fetchBooks();
@@ -19,7 +18,7 @@ export default function AdminBooks() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Gagal konek ke json-server:", err);
         setLoading(false);
       });
   };
@@ -29,8 +28,8 @@ export default function AdminBooks() {
       axios.delete(`http://localhost:8000/books/${id}`)
         .then(() => {
           fetchBooks();
-          setActiveDropdown(null);
-        });
+        })
+        .catch((err) => console.error(err));
     }
   };
 
@@ -55,31 +54,39 @@ export default function AdminBooks() {
               <th className="px-4 py-3">Cover</th>
               <th className="px-4 py-3">Genre</th>
               <th className="px-4 py-3">Author ID</th>
-              <th className="px-4 py-3"></th>
+              <th className="px-4 py-3 text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr><td colSpan="7" className="text-center py-4">Memuat data...</td></tr>
+            ) : books.length === 0 ? (
+              <tr><td colSpan="7" className="text-center py-4 text-gray-400">Belum ada data buku. Silakan tambah produk baru!</td></tr>
             ) : (
               books.map((book) => (
-                <tr key={book.id} className="border-b dark:border-gray-700">
-                  <td className="px-4 py-3 font-medium text-gray-900 dark:text-white">{book.title}</td>
-                  <td className="px-4 py-3">Rp {book.price}</td>
-                  <td className="px-4 py-3">{book.stock}</td>
-                  <td className="px-4 py-3 text-indigo-600">{book.cover_photo}</td>
-                  <td className="px-4 py-3">{book.genre}</td>
-                  <td className="px-4 py-3">{book.author_id}</td>
-                  <td className="px-4 py-3 relative text-right">
-                    <button onClick={() => setActiveDropdown(activeDropdown === book.id ? null : book.id)} className="text-gray-500 font-bold p-1">
-                      ...
+                <tr key={book.id} className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td className="px-4 py-3 font-medium text-gray-900 dark:text-white">{book.title || "-"}</td>
+                  <td className="px-4 py-3">Rp {book.price || 0}</td>
+                  <td className="px-4 py-3">{book.stock || 0}</td>
+                  <td className="px-4 py-3 text-indigo-600">{book.cover_photo || "default.jpg"}</td>
+                  {/* Cek jika isi genre berupa nama langsung atau ID */}
+                  <td className="px-4 py-3">{book.genre || book.genre_id || "-"}</td>
+                  <td className="px-4 py-3">{book.author_id || "-"}</td>
+                  
+                  {/* Tombol Aksi */}
+                  <td className="px-4 py-3 text-center flex justify-center space-x-2">
+                    <Link 
+                      to={`/admin/books/edit/${book.id}`} 
+                      className="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-xs px-3 py-1.5"
+                    >
+                      Edit
+                    </Link>
+                    <button 
+                      onClick={() => handleDelete(book.id)} 
+                      className="text-white bg-red-600 hover:bg-red-700 font-medium rounded-lg text-xs px-3 py-1.5"
+                    >
+                      Delete
                     </button>
-                    {activeDropdown === book.id && (
-                      <div className="absolute right-0 mt-2 w-28 bg-white border rounded shadow-lg z-50 text-left dark:bg-gray-700">
-                        <Link to={`/admin/books/edit/${book.id}`} className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">Edit</Link>
-                        <button onClick={() => handleDelete(book.id)} className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600">Delete</button>
-                      </div>
-                    )}
                   </td>
                 </tr>
               ))

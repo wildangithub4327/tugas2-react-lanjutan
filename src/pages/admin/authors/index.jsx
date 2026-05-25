@@ -6,7 +6,7 @@ export default function AdminAuthors() {
   const [authors, setAuthors] = useState([]);
 
   useEffect(() => {
-    // Ambil data author dari json-server port 8000
+    // Ambil data dari json-server port 8000
     axios.get("http://localhost:8000/authors")
       .then((res) => setAuthors(res.data))
       .catch((err) => console.error("Gagal memuat data author:", err));
@@ -31,12 +31,15 @@ export default function AdminAuthors() {
               <th className="px-4 py-3">ID</th>
               <th className="px-4 py-3">AUTHOR NAME</th>
               <th className="px-4 py-3">PHOTO</th>
+              {/* === 1. HEADER UNTUK KOLOM AKSI === */}
+              <th className="px-4 py-3 text-center">ACTIONS</th>
             </tr>
           </thead>
           <tbody>
             {authors.length === 0 ? (
               <tr>
-                <td colSpan="3" className="text-center py-4 text-gray-500">
+                {/* colSpan diganti ke 4 karena kolomnya sekarang ada 4 */}
+                <td colSpan="4" className="text-center py-4 text-gray-500">
                   Tidak ada data author atau sedang memuat...
                 </td>
               </tr>
@@ -45,7 +48,16 @@ export default function AdminAuthors() {
                 <tr key={author.id} className="border-b dark:border-gray-700">
                   <td className="px-4 py-3 font-medium text-gray-900 dark:text-white">{author.id}</td>
                   <td className="px-4 py-3">{author.name}</td>
-                  <td className="px-4 py-3 text-indigo-500">{author.photo || "default.png"}</td>
+                  <td className="px-4 py-3">{author.photo || "default_author.png"}</td>
+                  {/* === 2. TOMBOL EDIT DI SETIAP BARIS === */}
+                  <td className="px-4 py-3 text-center">
+                    <Link 
+                      to={`/admin/authors/edit/${author.id}`} 
+                      className="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-xs px-3 py-1.5"
+                    >
+                      Edit
+                    </Link>
+                  </td>
                 </tr>
               ))
             )}

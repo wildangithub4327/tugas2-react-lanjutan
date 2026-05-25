@@ -1,15 +1,6 @@
 {
   "books": [
     {
-      "id": "1",
-      "title": "Harry Potter and the Sorcerer's Stone",
-      "price": 50000,
-      "stock": 50,
-      "cover_photo": "harry_potter.jpg",
-      "genre": "Fiksi",
-      "author_id": 1
-    },
-    {
       "id": "2",
       "title": "The Shining",
       "price": 25000,
@@ -38,13 +29,35 @@
     }
   ],
   "genres": [
-    { "id": "1", "name": "Fiksi" },
-    { "id": "2", "name": "Horror" },
-    { "id": "3", "name": "Romance" }
+    {
+      "name": "horor",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Horror"
+    },
+    {
+      "id": "3",
+      "name": "Romance"
+    }
   ],
   "authors": [
-    { "id": "1", "name": "J.K. Rowling", "photo": "jk.jpg" },
-    { "id": "2", "name": "Stephen King", "photo": "shining.jpg" },
-    { "id": "3", "name": "Andrea Hirata", "photo": "laskar.jpg" }
-  ]
+    {
+      "name": "jokowi dodo",
+      "photo": "jk.jpg",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Stephen King",
+      "photo": "shining.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Andrea Hirata",
+      "photo": "laskar.jpg"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

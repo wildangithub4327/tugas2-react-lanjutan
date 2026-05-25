@@ -8,16 +8,21 @@ import Login from "./pages/auth/login.jsx";
 import Register from "./pages/auth/register.jsx";
 import AdminLayout from "./layouts/admin.jsx";
 import Dashboard from "./pages/admin"; 
-import AdminBooks from "./pages/admin/books";
-import BookCreate from "./pages/admin/books/create.jsx";
 
-// === IMPORT FITUR GENRE ===
-import AdminGenres from "./pages/admin/genres/index.jsx";
-import GenreCreate from "./pages/admin/genres/create.jsx";
+// === IMPORT FITUR BOOKS ===
+import AdminBooks from "./pages/admin/books/index.jsx"; 
+import CreateBook from "./pages/admin/books/create.jsx"; 
+import BookEdit from "./pages/admin/books/edit.jsx"; 
 
-// === IMPORT FITUR AUTHOR ===
-import AdminAuthors from "./pages/admin/authors/index.jsx";
-import AuthorCreate from "./pages/admin/authors/create.jsx";
+// === IMPORT FITUR GENRES ===
+import AdminGenres from "./pages/admin/genres/index.jsx"; // <--- SUDAH DIGANTI KE .JSX
+import GenreCreate from "./pages/admin/genres/create.jsx"; 
+import GenreEdit from "./pages/admin/genres/edit.jsx"; 
+
+// === IMPORT FITUR AUTHORS ===
+import AdminAuthors from "./pages/admin/authors/index.jsx"; // <--- SUDAH DIGANTI KE .JSX
+import CreateAuthor from "./pages/admin/authors/create.jsx"; 
+import AuthorEdit from "./pages/admin/authors/edit.jsx"; 
 
 function App() {
   return (
@@ -25,39 +30,42 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-          {/* Public */}
+          {/* Public Routing */}
           <Route element={<PublicLayout />}>
             <Route index element={<Home />} />
             <Route path="books" element={<Books />} />
           </Route>
 
-          {/* Auth */}
+          {/* Auth Routing */}
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
 
-          {/* Admin */}
+          {/* Admin Routing */}
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
             
             {/* Fitur Books */}
             <Route path="books">
               <Route index element={<AdminBooks />} />
-              <Route path="create" element={<BookCreate />} />
+              <Route path="create" element={<CreateBook />} />
+              <Route path="edit/:id" element={<BookEdit />} />
             </Route>
 
             {/* Fitur Genres */}
             <Route path="genres">
               <Route index element={<AdminGenres />} />
               <Route path="create" element={<GenreCreate />} />
+              <Route path="edit/:id" element={<GenreEdit />} />
             </Route>
 
-            {/* Fitur Authors (Udah ditaruh di dalem blok admin dengan bener) */}
+            {/* Fitur Authors */}
             <Route path="authors">
               <Route index element={<AdminAuthors />} />
-              <Route path="create" element={<AuthorCreate />} />
+              <Route path="create" element={<CreateAuthor />} />
+              <Route path="edit/:id" element={<AuthorEdit />} />
             </Route>
 
-          </Route> {/* <--- Penutup Utama Route Admin */}
+          </Route>
 
         </Routes>
       </BrowserRouter>
