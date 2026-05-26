@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/public";
 import Books from "./pages/public/books";
@@ -15,12 +16,12 @@ import CreateBook from "./pages/admin/books/create.jsx";
 import BookEdit from "./pages/admin/books/edit.jsx"; 
 
 // === IMPORT FITUR GENRES ===
-import AdminGenres from "./pages/admin/genres/index.jsx"; // <--- SUDAH DIGANTI KE .JSX
+import AdminGenres from "./pages/admin/genres/index.jsx";
 import GenreCreate from "./pages/admin/genres/create.jsx"; 
 import GenreEdit from "./pages/admin/genres/edit.jsx"; 
 
 // === IMPORT FITUR AUTHORS ===
-import AdminAuthors from "./pages/admin/authors/index.jsx"; // <--- SUDAH DIGANTI KE .JSX
+import AdminAuthors from "./pages/admin/authors/index.jsx";
 import CreateAuthor from "./pages/admin/authors/create.jsx"; 
 import AuthorEdit from "./pages/admin/authors/edit.jsx"; 
 
