@@ -25,6 +25,9 @@ import AdminAuthors from "./pages/admin/authors/index.jsx";
 import CreateAuthor from "./pages/admin/authors/create.jsx"; 
 import AuthorEdit from "./pages/admin/authors/edit.jsx"; 
 
+// === IMPORT PROTECTED ROUTE ===
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+
 function App() {
   return (
     <>
@@ -41,32 +44,36 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
 
-          {/* Admin Routing */}
-          <Route path="admin" element={<AdminLayout />}>
-            <Route index element={<Dashboard />} />
-            
-            {/* Fitur Books */}
-            <Route path="books">
-              <Route index element={<AdminBooks />} />
-              <Route path="create" element={<CreateBook />} />
-              <Route path="edit/:id" element={<BookEdit />} />
-            </Route>
+          {/* ============================================================ */}
+          {/* Admin Routing - DILINDUNGI OLEH PROTECTED ROUTE */}
+          {/* ============================================================ */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="admin" element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+              
+              {/* Fitur Books */}
+              <Route path="books">
+                <Route index element={<AdminBooks />} />
+                <Route path="create" element={<CreateBook />} />
+                <Route path="edit/:id" element={<BookEdit />} />
+              </Route>
 
-            {/* Fitur Genres */}
-            <Route path="genres">
-              <Route index element={<AdminGenres />} />
-              <Route path="create" element={<GenreCreate />} />
-              <Route path="edit/:id" element={<GenreEdit />} />
-            </Route>
+              {/* Fitur Genres */}
+              <Route path="genres">
+                <Route index element={<AdminGenres />} />
+                <Route path="create" element={<GenreCreate />} />
+                <Route path="edit/:id" element={<GenreEdit />} />
+              </Route>
 
-            {/* Fitur Authors */}
-            <Route path="authors">
-              <Route index element={<AdminAuthors />} />
-              <Route path="create" element={<CreateAuthor />} />
-              <Route path="edit/:id" element={<AuthorEdit />} />
+              {/* Fitur Authors */}
+              <Route path="authors">
+                <Route index element={<AdminAuthors />} />
+                <Route path="create" element={<CreateAuthor />} />
+                <Route path="edit/:id" element={<AuthorEdit />} />
+              </Route>
             </Route>
-
-          </Route>
+          </Route> {/* <-- Tag penutup dipastikan berpasangan dengan benar di sini */}
+          {/* ============================================================ */}
 
         </Routes>
       </BrowserRouter>
